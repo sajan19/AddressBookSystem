@@ -7,19 +7,8 @@ public class AddressBookMain {
         Scanner sc = new Scanner(System.in);
         AddressBook addressBook = new AddressBook();
         addressBook.Add();
+        System.out.println("Thank for Using Address book");
 
-        //Asking Edit Option to User
-        System.out.println("Do You Want To Edit ContactS?? ");
-        System.out.println("Enter Y/y to edit ");
-        String op = sc.nextLine();
-
-        if(op.equals("y") || op.equals("Y")){
-            System.out.println("You have Entered following data");
-            addressBook.Edit();
-            System.out.println("Thank for Using Address book");
-        } else {
-            System.out.println("Thanks for using! ");
-        }
     }
 }
 
