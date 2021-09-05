@@ -1,5 +1,5 @@
 public class Contacts {
-    // instance variable
+    // instantce variable
     String firstName;
     String lastName;
     String city;
@@ -7,8 +7,10 @@ public class Contacts {
     String pinCode;
     String mobileNo;
     String email;
-    //Constructor
-    public Contacts(String firstName, String lastName, String city, String state, String pinCode, String mobileNo, String email) {
+
+    // Added default constructor for contact string
+    public Contacts() {
+
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
@@ -17,11 +19,8 @@ public class Contacts {
         this.mobileNo = mobileNo;
         this.email = email;
     }
-    //Getter and Setter
 
-    public String getFirstName() {
-        return firstName;
-    }
+// generated getter setter method
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -51,11 +50,11 @@ public class Contacts {
         this.state = state;
     }
 
-    public String getPinCode() {
+    public String getPin() {
         return pinCode;
     }
 
-    public void setPinCode(String pinCode) {
+    public void setPin(String pinCode) {
         this.pinCode = pinCode;
     }
 
@@ -75,7 +74,7 @@ public class Contacts {
         this.email = email;
     }
 
-    //toString Method
+    @Override
     public String toString() {
         return "AddressBook{" +
                 "firstName='" + firstName + '\'' +
@@ -86,8 +85,5 @@ public class Contacts {
                 ", mobileNo='" + mobileNo + '\'' +
                 ", email='" + email + '\'' +
                 '}';
-    }
-    public static void main(String[] args) {
-        System.out.println("Welcome to Address Book...");
     }
 }
