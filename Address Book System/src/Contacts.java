@@ -22,6 +22,10 @@ public class Contacts {
 
 // generated getter setter method
 
+    public String getFirstName() {
+        return firstName;
+    }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
