@@ -1,27 +1,26 @@
 public class Contacts {
-    // instance variable
+    // instantce variable
     String firstName;
     String lastName;
     String city;
     String state;
-    String pinCode;
+    String pin;
     String mobileNo;
     String email;
-    //Constructor
-    public Contacts(String firstName, String lastName, String city, String state, String pinCode, String mobileNo, String email) {
+
+    // Added default constructor for contact string
+    public Contacts() {
+
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
         this.state = state;
-        this.pinCode = pinCode;
+        this.pin = pin;
         this.mobileNo = mobileNo;
         this.email = email;
     }
-    //Getter and Setter
 
-    public String getFirstName() {
-        return firstName;
-    }
+// generated getter setter method
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -51,12 +50,12 @@ public class Contacts {
         this.state = state;
     }
 
-    public String getPinCode() {
-        return pinCode;
+    public String getPin() {
+        return pin;
     }
 
-    public void setPinCode(String pinCode) {
-        this.pinCode = pinCode;
+    public void setPin(String pin) {
+        this.pin = pin;
     }
 
     public String getMobileNo() {
@@ -75,19 +74,16 @@ public class Contacts {
         this.email = email;
     }
 
-    //toString Method
+    @Override
     public String toString() {
         return "AddressBook{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
-                ", pin='" + pinCode + '\'' +
+                ", pin='" + pin + '\'' +
                 ", mobileNo='" + mobileNo + '\'' +
                 ", email='" + email + '\'' +
                 '}';
-    }
-    public static void main(String[] args) {
-        System.out.println("Welcome to Address Book...");
     }
 }
