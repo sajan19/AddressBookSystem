@@ -1,15 +1,12 @@
-import java.util.Iterator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class AddressBookMain {
     // main method
     public static void main(String[] args) {
         System.out.println("Welcome to Address Book System ! ");
         Scanner sc = new Scanner(System.in);
-        Map<String,AddressBook> addressbookHashMap = new HashMap<String, AddressBook>();
+//        Map<String,AddressBook> addressbookHashMap = new HashMap<String, AddressBook>();
+        Set<AddressBook> addressbookHashMap = new LinkedHashSet<AddressBook>();
         AddressBook addressBook = new AddressBook();
         // addressBook.getMenu();
         while (true) {
@@ -26,7 +23,7 @@ public class AddressBookMain {
                     System.out.println("Enter Name of new Address Book: ");
                     String bookName = sc.next();
                     sc.nextLine();
-                    addressbookHashMap.put(bookName, addressBook);//adding bookname as a key and value is allocating memory for addressbook obj
+                    addressbookHashMap.add(bookName, addressBook);//adding bookname as a key and value is allocating memory for addressbook obj
                     addressBook.getMenu(addressbookHashMap.get(bookName));//call addressbookoption method with passing key of hashmap
                     break;
                 case 2:

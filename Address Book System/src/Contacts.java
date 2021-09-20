@@ -87,7 +87,7 @@ public class Contacts {
                 ", email='" + email + '\'' +
                 '}';
     }
-    public static void main(String[] args) {
-        System.out.println("Welcome to Address Book...");
-    }
+//    public static void main(String[] args) {
+//        System.out.println("Welcome to Address Book...");
+//    }
 }
