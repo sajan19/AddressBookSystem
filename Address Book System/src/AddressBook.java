@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -8,7 +9,7 @@ public class AddressBook {
     public static List<PersonInfo> personInfo = new ArrayList<>();
     public static Map<String, List<PersonInfo>> hashmap = new HashMap<String, List<PersonInfo>>();
 
-    // Created a method for adding Contacts
+    // Method to add Contacts
     public static void addContact() {
         System.out.print("Enter Your First Name : ");
         String firstName = sc.next();
@@ -36,8 +37,7 @@ public class AddressBook {
             System.out.println(personInfo2);
         }
     }
-
-    //UC7 Ability to ensure there is no Duplicate Entry of the same Person
+    //Method to check no Duplicate Entry of the same Person is present in Address Book
     private static boolean checkExist(String firstName, String lastName, List<PersonInfo> personInfo) {
         boolean result = false;
         for (PersonInfo check : personInfo) {
@@ -47,8 +47,7 @@ public class AddressBook {
         }
         return result;
     }
-
-    // UC4 Delete PersonInfo Method
+    // Method to Delete a Contact
     public static void deleteContact() {
         System.out.println("Enter first name for Delete PersonInfo : ");
         String firstName = sc.nextLine();
@@ -61,15 +60,14 @@ public class AddressBook {
             }
         }
     }
-
+    //Method to print Contacts
     public static void showContact() {
         for (int i = 0; i < personInfo.size(); i++) {
             hashmap.put(personInfo.get(i).getPhoneNumber(), personInfo);
             System.out.println(hashmap.toString());
         }
     }
-
-    // UC3 editContact
+    // Method to edit a Contact
     static void editContact() {
         String enteredName;
         System.out.println("Enter First name of contact to edit it ");
@@ -122,8 +120,7 @@ public class AddressBook {
         }
 
     }
-
-    //UC8 Ability to search Person in a City or State
+    //Method to Search Person using City or State
     public static void searchPersonByName(String firstName) {
         List listPerson = (List) personInfo.stream()
                 .filter(p -> p.getFirstName().equals(firstName)).collect(Collectors.toList());
@@ -132,8 +129,7 @@ public class AddressBook {
             System.out.println(person);
         }
     }
-
-    //UC9 Ability to search Person in a City or State
+    //Method to search Person in a City or State
     public static void searchPersonByCity(String City) {
         List listPerson = (List) personInfo.stream()
                 .filter(p -> p.getCity().equals(City)).collect(Collectors.toList());
@@ -142,8 +138,7 @@ public class AddressBook {
             System.out.println(person);
         }
     }
-
-    //UC10 Ability to search Person in a City or State
+    //Method to Count Person in a City or State
     public static void countByCity(String city) {
         List listPerson = (List) personInfo.stream()
                 .filter(p -> p.getCity().equals(city))
@@ -151,7 +146,14 @@ public class AddressBook {
         long total=Stream.of(listPerson).count();
         System.out.println("Totally "+total+ " contacts present in the AddressBook");
     }
-
+    //Method to Sort the Entries by Name
+    public static void sortByName(){
+        AddressBook.sortBy(PersonInfo::getFirstName).forEach(System.out::println);
+    }
+    public static List<PersonInfo> sortBy(Function<? super PersonInfo, ? extends String> key) {
+        return personInfo.stream().sorted(Comparator.comparing(key)).collect(Collectors.toList());
+    }
+    //Method to diplay Menu Choices to User
     public static void menu() {
         String menuOption;
         do {
@@ -162,6 +164,7 @@ public class AddressBook {
             System.out.println("	5.Search Person Using Name");
             System.out.println("	6.Search Person Using City");
             System.out.println("	7.Count person in a city");
+            System.out.println("	8.Sort by Person's name");
 
             menuOption = sc.nextLine();
             switch (menuOption) {
@@ -192,6 +195,9 @@ public class AddressBook {
                     String citys = sc.next();
                     countByCity(citys);
                     break;
+                case "8":
+                    sortByName();
+                    break;
                 default:
                     System.out.println("Invalid Input");
             }
@@ -199,7 +205,6 @@ public class AddressBook {
         } while (menuOption.equals("0") == false);
 
     }
-
     // main method
     public static void main(String[] args) {
         AddressBook book = new AddressBook();
