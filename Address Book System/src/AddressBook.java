@@ -1,5 +1,7 @@
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class AddressBook {
     public static Scanner sc = new Scanner(System.in);
@@ -33,6 +35,17 @@ public class AddressBook {
         for (PersonInfo personInfo2 : personInfo) {
             System.out.println(personInfo2);
         }
+    }
+
+    //UC7 Ability to ensure there is no Duplicate Entry of the same Person
+    private static boolean checkExist(String firstName, String lastName, List<PersonInfo> personInfo) {
+        boolean result = false;
+        for (PersonInfo check : personInfo) {
+            if (firstName.equals(check.getFirstName()) && lastName.equals(check.getLastName())) {
+                result = true;
+            }
+        }
+        return result;
     }
 
     // UC4 Delete PersonInfo Method
@@ -110,17 +123,7 @@ public class AddressBook {
 
     }
 
-    //UC7 Ability to ensure there is no Duplicate Entry of the same Person
-    private static boolean checkExist(String firstName, String lastName, List<PersonInfo> personInfo) {
-        boolean result = false;
-        for (PersonInfo check : personInfo) {
-            if (firstName.equals(check.getFirstName()) && lastName.equals(check.getLastName())) {
-                result = true;
-            }
-        }
-        return result;
-    }
-    //UC8 Ability to search Person in a City or State across the multiple AddressBook
+    //UC8 Ability to search Person in a City or State
     public static void searchPersonByName(String firstName) {
         List listPerson = (List) personInfo.stream()
                 .filter(p -> p.getFirstName().equals(firstName)).collect(Collectors.toList());
@@ -129,7 +132,8 @@ public class AddressBook {
             System.out.println(person);
         }
     }
-    //UC9 Ability to search Person in a City or State across the multiple AddressBook
+
+    //UC9 Ability to search Person in a City or State
     public static void searchPersonByCity(String City) {
         List listPerson = (List) personInfo.stream()
                 .filter(p -> p.getCity().equals(City)).collect(Collectors.toList());
@@ -138,6 +142,16 @@ public class AddressBook {
             System.out.println(person);
         }
     }
+
+    //UC10 Ability to search Person in a City or State
+    public static void countByCity(String city) {
+        List listPerson = (List) personInfo.stream()
+                .filter(p -> p.getCity().equals(city))
+                .collect(Collectors.toList());
+        long total=Stream.of(listPerson).count();
+        System.out.println("Totally "+total+ " contacts present in the AddressBook");
+    }
+
     public static void menu() {
         String menuOption;
         do {
@@ -147,6 +161,7 @@ public class AddressBook {
             System.out.println("	4.Show Contact");
             System.out.println("	5.Search Person Using Name");
             System.out.println("	6.Search Person Using City");
+            System.out.println("	7.Count person in a city");
 
             menuOption = sc.nextLine();
             switch (menuOption) {
@@ -171,6 +186,11 @@ public class AddressBook {
                     System.out.println("Enter City Name");
                     String city = sc.next();
                     searchPersonByCity(city);
+                    break;
+                case "7":
+                    System.out.println("Enter City Name");
+                    String citys = sc.next();
+                    countByCity(citys);
                     break;
                 default:
                     System.out.println("Invalid Input");
