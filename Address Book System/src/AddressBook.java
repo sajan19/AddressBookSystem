@@ -37,6 +37,7 @@ public class AddressBook {
             System.out.println(personInfo2);
         }
     }
+
     //Method to check no Duplicate Entry of the same Person is present in Address Book
     private static boolean checkExist(String firstName, String lastName, List<PersonInfo> personInfo) {
         boolean result = false;
@@ -47,6 +48,7 @@ public class AddressBook {
         }
         return result;
     }
+
     // Method to Delete a Contact
     public static void deleteContact() {
         System.out.println("Enter first name for Delete PersonInfo : ");
@@ -60,6 +62,7 @@ public class AddressBook {
             }
         }
     }
+
     //Method to print Contacts
     public static void showContact() {
         for (int i = 0; i < personInfo.size(); i++) {
@@ -67,6 +70,7 @@ public class AddressBook {
             System.out.println(hashmap.toString());
         }
     }
+
     // Method to edit a Contact
     static void editContact() {
         String enteredName;
@@ -120,51 +124,58 @@ public class AddressBook {
         }
 
     }
+
     //Method to Search Person using City or State
     public static void searchPersonByName(String firstName) {
         List listPerson = (List) personInfo.stream()
                 .filter(p -> p.getFirstName().equals(firstName)).collect(Collectors.toList());
-        for (Object person:listPerson)
-        {
+        for (Object person : listPerson) {
             System.out.println(person);
         }
     }
+
     //Method to search Person in a City or State
     public static void searchPersonByCity(String City) {
         List listPerson = (List) personInfo.stream()
                 .filter(p -> p.getCity().equals(City)).collect(Collectors.toList());
-        for (Object person:listPerson)
-        {
+        for (Object person : listPerson) {
             System.out.println(person);
         }
     }
+
     //Method to Count Person in a City or State
     public static void countByCity(String city) {
         List listPerson = (List) personInfo.stream()
                 .filter(p -> p.getCity().equals(city))
                 .collect(Collectors.toList());
-        long total=Stream.of(listPerson).count();
-        System.out.println("Totally "+total+ " contacts present in the AddressBook");
+        long total = Stream.of(listPerson).count();
+        System.out.println("Totally " + total + " contacts present in the AddressBook");
     }
+
     //Method to Sort the Entries by Name
-    public static void sortByName(){
+    public static void sortByName() {
         AddressBook.sortBy(PersonInfo::getFirstName).forEach(System.out::println);
     }
+
     public static List<PersonInfo> sortBy(Function<? super PersonInfo, ? extends String> key) {
         return personInfo.stream().sorted(Comparator.comparing(key)).collect(Collectors.toList());
     }
+
     //Method to Sort Entries by City
-    public static void sortByCity(){
+    public static void sortByCity() {
         AddressBook.sortBy(PersonInfo::getCity).forEach(System.out::println);
     }
+
     //Method to Sort Entries by State
-    public static void sortByState(){
+    public static void sortByState() {
         AddressBook.sortBy(PersonInfo::getState).forEach(System.out::println);
     }
+
     //Method to Sort Entries by Zip
-    public static void sortByZip(){
+    public static void sortByZip() {
         AddressBook.sortBy(PersonInfo::getZip).forEach(System.out::println);
     }
+
     //Method to diplay Menu Choices to User
     public static void menu() {
         String menuOption;
@@ -217,6 +228,7 @@ public class AddressBook {
         } while (menuOption.equals("0") == false);
 
     }
+
     // main method
     public static void main(String[] args) {
         AddressBook book = new AddressBook();
